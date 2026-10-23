@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Saniya Sayyad, Java Backend Developer in Pune. Spring Boot microservices, payments, JWT authentication.">
+<style>body{margin:0}</style>
+<title>Saniya Sayyad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one wide column. Hero pairs the name with an API-response panel; every later
+   section is a label column on the left and its content on the right, split by hairlines.
+   Section labels are route paths, because this person builds REST APIs. */
+:root {
+  --bg: #F3F5F9;
+  --surface: #FFFFFF;
+  --ink: #121720;
+  --muted: #566072;
+  --rule: #D8DEE8;
+  --accent: #2346E6;
+  --accent-ink: #FFFFFF;
+  --ok: #17884F;
+  --panel: #0F141C;
+  --panel-fg: #D6DDE8;
+  --panel-key: #9DB1FF;
+  --panel-str: #F0C987;
+  --panel-num: #7ED6A6;
+  --panel-rule: #243044;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B0F15;
+    --surface: #121822;
+    --ink: #E8ECF3;
+    --muted: #9AA6B8;
+    --rule: #222B38;
+    --accent: #8197FF;
+    --accent-ink: #0B0F15;
+    --ok: #4FD08A;
+    --panel: #151C27;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B0F15;
+  --surface: #121822;
+  --ink: #E8ECF3;
+  --muted: #9AA6B8;
+  --rule: #222B38;
+  --accent: #8197FF;
+  --accent-ink: #0B0F15;
+  --ok: #4FD08A;
+  --panel: #151C27;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  padding-inline: clamp(16px, 4vw, 40px);
+  padding-block: 0 3rem;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1080px; margin-inline: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3, p, ul, dl, dd, pre { margin: 0; padding: 0; }
+ul { list-style: none; }
+
+/* top bar */
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 2rem; padding-block: 1.25rem; }
+.mark { font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; letter-spacing: -0.01em; text-decoration: none; }
+.nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; font-size: 0.9rem; }
+.nav a { color: var(--muted); text-decoration: none; padding-block: 0.25rem; }
+.nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 2.5rem 3.5rem; align-items: center; padding-block: 3rem 3.5rem; }
+.status { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); }
+.status::before { content: ""; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--ok); }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.75rem, 7.5vw, 5rem); line-height: 0.98; letter-spacing: -0.035em; margin-top: 1.25rem; text-wrap: balance; }
+.role-line { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.25rem, 2.6vw, 1.625rem); letter-spacing: -0.01em; color: var(--accent); margin-top: 0.75rem; }
+.lede { max-width: 34rem; margin-top: 1.5rem; font-size: 1.125rem; color: var(--ink); }
+.cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+.btn { display: inline-flex; align-items: center; font: 600 0.9375rem var(--font-body); padding: 0.7rem 1.15rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer; }
+.btn:hover { filter: brightness(1.08); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--rule); }
+.btn-ghost:hover { border-color: var(--ink); filter: none; }
+
+.panel { background: var(--panel); color: var(--panel-fg); border: 1px solid var(--panel-rule); border-radius: 8px; min-width: 0; overflow: hidden; }
+.panel-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; padding: 0.8rem 1rem; border-bottom: 1px solid var(--panel-rule); font-family: var(--font-mono); font-size: 0.75rem; }
+.panel-bar .verb { color: var(--panel-num); font-weight: 500; }
+.panel-bar .code { color: var(--panel-num); }
+.panel pre { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.7; padding: 1rem; overflow-x: auto; }
+.k { color: var(--panel-key); }
+.s { color: var(--panel-str); }
+.n { color: var(--panel-num); }
+
+/* figures */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; padding-block: 1.75rem; border-block: 1px solid var(--rule); }
+.stat-num { font-family: var(--font-display); font-weight: 700; font-size: 2.5rem; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.stat-label { margin-top: 0.4rem; font-size: 0.875rem; color: var(--muted); max-width: 14rem; }
+
+/* sections */
+.sec { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 1.5rem 3.5rem; padding-block: 3.5rem; border-top: 1px solid var(--rule); }
+.stats + .sec { margin-top: 3.5rem; }
+.sec-eyebrow { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); letter-spacing: 0.02em; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.02em; line-height: 1.15; margin-top: 0.4rem; text-wrap: balance; }
+.sec-body { min-width: 0; }
+h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; }
+.meta { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); }
+
+.job { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.35rem 2rem; padding-bottom: 1.25rem; }
+.job-title { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; letter-spacing: -0.015em; line-height: 1.2; }
+.job-co { color: var(--muted); margin-top: 0.15rem; }
+.work > li { padding-block: 1.1rem; border-top: 1px solid var(--rule); }
+.work p { margin-top: 0.3rem; color: var(--muted); max-width: 40rem; }
+.sub { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+.chips li { font-family: var(--font-mono); font-size: 0.8125rem; padding: 0.25rem 0.6rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+.services { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.project { display: flex; flex-direction: column; gap: 0.9rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; min-width: 0; }
+.project h3 { font-family: var(--font-display); font-size: 1.375rem; font-weight: 700; letter-spacing: -0.015em; }
+.project .stack { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--accent); }
+.project ul { display: flex; flex-direction: column; gap: 0.6rem; color: var(--muted); font-size: 0.9375rem; }
+.project ul li { padding-left: 1rem; position: relative; }
+.project ul li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
+.project .link { margin-top: auto; padding-top: 0.5rem; font-weight: 600; font-size: 0.9375rem; color: var(--ink); text-underline-offset: 4px; }
+.project .link:hover { color: var(--accent); }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem 2.5rem; }
+.skills dd { margin-top: 0.3rem; }
+
+.edu > li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 2rem; padding-block: 1.1rem; border-top: 1px solid var(--rule); }
+.edu > li:first-child { border-top: 0; padding-top: 0; }
+.edu .where { color: var(--muted); }
+.edu .right { text-align: right; }
+.cert { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+.cert p { margin-top: 0.4rem; }
+
+.contact-lede { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.25; letter-spacing: -0.02em; max-width: 36rem; text-wrap: balance; }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; margin-top: 1.75rem; }
+.mail-addr { font-family: var(--font-mono); font-size: 1rem; overflow-wrap: anywhere; user-select: all; }
+.links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin-top: 1.25rem; font-weight: 500; }
+.links a { text-underline-offset: 4px; }
+.links a:hover { color: var(--accent); }
+.foot { padding-top: 1.5rem; border-top: 1px solid var(--rule); font-size: 0.8125rem; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 2rem; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); padding-block: 2rem 2.5rem; }
+  .sec { grid-template-columns: minmax(0, 1fr); padding-block: 2.5rem; }
+  .projects { grid-template-columns: minmax(0, 1fr); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .nav a, .links a, .project .link { transition: color 0.15s ease, filter 0.15s ease, border-color 0.15s ease; }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top">Saniya Sayyad</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <p class="status">Open to work · Pune or remote</p>
+        <h1>Saniya Sayyad</h1>
+        <p class="role-line">Java Backend Developer</p>
+        <p class="lede">I build and maintain Spring Boot microservices: the payments, authentication and release pipeline behind a learning platform used in production.</p>
+        <div class="cta">
+          <a class="btn" href="#experience">See my work</a>
+          <a class="btn btn-ghost" href="https://github.com/saniyasayyad22" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-bar">
+          <span><span class="verb">GET</span> /developers/saniya-sayyad</span>
+          <span class="code">200 OK</span>
+        </div>
+<pre><code>{
+  <span class="k">"name"</span>: <span class="s">"Saniya Sayyad"</span>,
+  <span class="k">"role"</span>: <span class="s">"Java Backend Developer"</span>,
+  <span class="k">"experience"</span>: <span class="s">"1 year"</span>,
+  <span class="k">"microservices"</span>: <span class="n">8</span>,
+  <span class="k">"stack"</span>: [
+    <span class="s">"Spring Boot"</span>, <span class="s">"JPA"</span>,
+    <span class="s">"MySQL"</span>, <span class="s">"Jenkins"</span>,
+    <span class="s">"AWS SSM"</span>
+  ],
+  <span class="k">"location"</span>: <span class="s">"Pune, IN"</span>,
+  <span class="k">"openToWork"</span>: <span class="n">true</span>
+}</code></pre>
+      </div>
+    </section>
+
+    <ul class="stats" aria-label="Internship at a glance">
+      <li><p class="stat-num">8</p><p class="stat-label">Spring Boot microservices maintained</p></li>
+      <li><p class="stat-num">3</p><p class="stat-label">Paytm payment REST APIs built</p></li>
+      <li><p class="stat-num">20+</p><p class="stat-label">Production issues resolved</p></li>
+      <li><p class="stat-num">8</p><p class="stat-label">Deployment environments with secrets in AWS SSM</p></li>
+    </ul>
+
+    <section class="sec" id="experience">
+      <div class="sec-head">
+        <p class="sec-eyebrow">/experience</p>
+        <h2>Experience</h2>
+      </div>
+      <div class="sec-body">
+        <div class="job">
+          <div>
+            <p class="job-title">Backend Java Intern</p>
+            <p class="job-co">Lighthouse Learning Digital Labs</p>
+          </div>
+          <p class="meta">Jul 2025 – Jul 2026<br>Pune, India</p>
+        </div>
+
+        <ul class="work">
+          <li>
+            <h3>Paytm payment gateway integration</h3>
+            <p>Built 3 REST APIs for the Paytm integration: payment initiation, payment status and callback handling.</p>
+          </li>
+          <li>
+            <h3>Force Logout</h3>
+            <p>Designed a server-side Force Logout. The service validates each JWT's issued-at (iat) timestamp against force logout records, and uses caching to invalidate user sessions securely.</p>
+          </li>
+          <li>
+            <h3>Java 21 to Java 25 migration</h3>
+            <p>Migrated 8 Spring Boot microservices from Java 21 to Java 25. Moved application secrets into AWS Systems Manager Parameter Store across 8 deployment environments.</p>
+          </li>
+          <li>
+            <h3>Performance and stability</h3>
+            <p>Improved API response times with targeted database indexes and optimised JPA queries, and resolved 20+ production issues.</p>
+          </li>
+          <li>
+            <h3>Releases with Jenkins</h3>
+            <p>Ran CI/CD deployments for feature releases, dependency upgrades and production hotfixes, working with frontend and QA teams in an Agile/Scrum setup.</p>
+          </li>
+        </ul>
+
+        <div class="services">
+          <p class="sub">Services I worked on include</p>
+          <ul class="chips">
+            <li>School</li>
+            <li>Authentication</li>
+            <li>Notification</li>
+            <li>CMS</li>
+            <li>Primora</li>
+            <li>Masterclass</li>
+            <li>Assessment</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="projects">
+      <div class="sec-head">
+        <p class="sec-eyebrow">/projects</p>
+        <h2>Projects</h2>
+      </div>
+      <div class="sec-body">
+        <div class="projects">
+          <article class="project">
+            <h3>Student Management System</h3>
+            <p class="stack">Java · Spring Boot · Spring Data JPA · Hibernate · MySQL</p>
+            <ul>
+              <li>Layered REST API in Spring Boot with a Controller-Service-Repository structure and CRUD through Spring Data JPA and Hibernate on MySQL.</li>
+              <li>Custom JPQL queries to search students by name and filter records by CGPA.</li>
+              <li>Request validation with @Valid and centralised exception handling with @RestControllerAdvice.</li>
+              <li>APIs tested with Postman; database operations checked in MySQL Workbench.</li>
+            </ul>
+            <a class="link" href="https://github.com/saniyasayyad22/student-management-springboot" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </article>
+
+          <article class="project">
+            <h3>Wanderlust</h3>
+            <p class="stack">Node.js · Express.js · MongoDB · EJS</p>
+            <ul>
+              <li>Full-stack accommodation listing platform with server-side rendering.</li>
+              <li>User authentication, authorization and session management for secure access.</li>
+              <li>CRUD for listings, plus reviews and ratings.</li>
+            </ul>
+            <a class="link" href="https://github.com/saniyasayyad22/Wanderlust-A-Listing" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="skills">
+      <div class="sec-head">
+        <p class="sec-eyebrow">/skills</p>
+        <h2>Skills</h2>
+      </div>
+      <div class="sec-body">
+        <dl class="skills">
+          <div><dt class="sub">Languages</dt><dd>Java, JavaScript, Python, C++</dd></div>
+          <div><dt class="sub">Backend</dt><dd>Spring Boot, Spring MVC, Spring Data JPA, Hibernate, REST APIs, Microservices, JWT authentication</dd></div>
+          <div><dt class="sub">Databases</dt><dd>MySQL, MongoDB</dd></div>
+          <div><dt class="sub">Cloud and DevOps</dt><dd>AWS SSM Parameter Store, Jenkins (CI/CD)</dd></div>
+          <div><dt class="sub">Tools and testing</dt><dd>Git, GitHub, Maven, Gradle, Postman, Swagger, Jira, JMeter</dd></div>
+          <div><dt class="sub">Concepts</dt><dd>OOP, MVC architecture, SOLID principles, exception handling, DTO pattern, database indexing, Agile/Scrum</dd></div>
+          <div><dt class="sub">Frontend</dt><dd>HTML, CSS, EJS, React.js</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="sec" id="education">
+      <div class="sec-head">
+        <p class="sec-eyebrow">/education</p>
+        <h2>Education</h2>
+      </div>
+      <div class="sec-body">
+        <ul class="edu">
+          <li>
+            <div>
+              <h3>B.E. Information Technology</h3>
+              <p class="where">D. Y. Patil College of Engineering, Akurdi, Pune</p>
+            </div>
+            <div class="right">
+              <p class="meta">Graduated Jun 2026</p>
+              <p class="meta">CGPA 8.94 / 10</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Higher Secondary Certificate (HSC)</h3>
+              <p class="where">New Arts Commerce and Science College, Ahmednagar</p>
+            </div>
+            <div class="right">
+              <p class="meta">2022</p>
+              <p class="meta">73%</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Secondary School Certificate (SSC)</h3>
+              <p class="where">Maharani Tarabai Kanya Vidyalaya, Ahmednagar</p>
+            </div>
+            <div class="right">
+              <p class="meta">2020</p>
+              <p class="meta">89.2%</p>
+            </div>
+          </li>
+        </ul>
+        <div class="cert">
+          <p class="sub">Certification</p>
+          <p>Java Programming: Beginner to Master (Udemy, instructor Abdul Bari)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="contact">
+      <div class="sec-head">
+        <p class="sec-eyebrow">/contact</p>
+        <h2>Contact</h2>
+      </div>
+      <div class="sec-body">
+        <p class="contact-lede">Looking for a Software, Backend or Java Developer role in Pune or remote.</p>
+        <div class="mail">
+          <span class="mail-addr" id="mail-addr">saniyaasayyad2020@gmail.com</span>
+          <button class="btn btn-ghost" type="button" id="copy-btn">Copy email</button>
+        </div>
+        <div class="links">
+          <a href="https://github.com/saniyasayyad22" target="_blank" rel="noopener">github.com/saniyasayyad22</a>
+          <a href="https://www.linkedin.com/in/saniya-sayyad" target="_blank" rel="noopener">linkedin.com/in/saniya-sayyad</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Saniya Ansar Sayyad</span>
+    <span>Pune, Maharashtra, India</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById("copy-btn");
+  var addr = document.getElementById("mail-addr");
+  if (!btn || !addr) return;
+  function selectAddr() {
+    var r = document.createRange();
+    r.selectNodeContents(addr);
+    var s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(r);
+  }
+  btn.addEventListener("click", function () {
+    var text = addr.textContent.trim();
+    var done = function (label) {
+      btn.textContent = label;
+      setTimeout(function () { btn.textContent = "Copy email"; }, 2200);
+    };
+    try {
+      navigator.clipboard.writeText(text).then(
+        function () { done("Copied"); },
+        function () { selectAddr(); done("Press Ctrl+C to copy"); }
+      );
+    } catch (e) {
+      selectAddr();
+      done("Press Ctrl+C to copy");
+    }
+  });
+})();
+</script>
+
+</html>
